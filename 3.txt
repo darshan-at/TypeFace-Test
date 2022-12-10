@@ -1,0 +1,16 @@
+The type of data that needs to be stored: Monitoring data, such as the API name, user ID, Request ID,request time, response time, and error status, must be stored in the datastore.
+The queries that will be performed on the datastore: The datastore needs to support queries to get the API with maximum average response time across users, maximum average response time for each user, and error percentage of each API in buckets of 1 hour for 24 hours.
+Based on these factors, we can design the datastore using a relational database with the following schema:
+ServiceMonitoringData:
+  - api_name (string): API name
+  - user_id (integer): User ID who make request
+  - request_id(integer): Request ID made by user to this API
+
+RequestData:
+  - request_id(integer): Unique Request ID
+  - request_time (datetime): Time at which request has been made
+  - response_time (integer): Time at which response has been given
+  - error_status (boolean): 1 shows it result in error ,else not
+
+
+
